@@ -1,3 +1,9 @@
 config/
 node_modules/
 .prettierrc
+.cache/
+dist/
+.env
+.DS_Store
+coverage/
+.vscode/
