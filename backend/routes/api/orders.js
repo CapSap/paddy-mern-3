@@ -1,16 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-//order model
+//order model import
 const Order = require("../../models/Orders");
 
 //@route GET api/orders
 // get all all orders
-
 router.get("/", (req, res) => {
-  Order.find()
-    .sort({ date: -1 })
-    .then((orders) => res.json(orders));
+  Order.find().then((orders) => res.json(orders));
 });
 
 //@route POST api/orders
