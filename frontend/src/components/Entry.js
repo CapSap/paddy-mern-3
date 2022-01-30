@@ -6,9 +6,13 @@ function Entry() {
     customerName: "",
     orderStatus: "waiting to be sent",
     pickupLocation: "Canberra",
-    orderedItems: {
-      sendingStore: "Canberra",
-    },
+    orderedItems: [
+      {
+        sendingStore: "Canberra",
+        date: "",
+        posted: false,
+      },
+    ],
     fourHour: false,
   });
 
@@ -40,6 +44,7 @@ function Entry() {
       body: JSON.stringify(orderInfo),
     });
   }
+
   return (
     <div className="bg-slate-200">
       <div className="mt-10 sm:mt-0">
@@ -55,7 +60,7 @@ function Entry() {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+            <form method="POST" action="/" onSubmit={(e) => onSubmit(e)}>
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-neutral-50 sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
@@ -139,7 +144,14 @@ function Entry() {
                         onChange={(e) => handleChange(e)}
                       ></input>
                     </div>
-                    <div className="col-span-6">line break?</div>
+                    <div className="col-span-6">
+                      Make multiple requests:{" "}
+                      <button className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        {" "}
+                        Get more requests
+                      </button>
+                    </div>
+
                     <div className="col-start-5 col-span-6 sm:col-span-3">
                       <label
                         htmlFor="items"
@@ -150,10 +162,40 @@ function Entry() {
                       <div className="mt-1">
                         <textarea
                           id="item"
+                          className="w-full"
                           onChange={(e) => {
                             handleOrderedItemsChange(e);
                           }}
                         />
+                      </div>
+                    </div>
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="sendingStore"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Sending Store:{" "}
+                      </label>
+                      <div className="col-span-6 sm:col-span-3">
+                        <select
+                          id="sendingStore"
+                          className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                          value={orderInfo.sendingStore}
+                          onChange={(e) => {
+                            handleChange(e);
+                          }}
+                        >
+                          <option value="Canberra">Canberra - 213</option>
+                          <option value="Fortitude Valley">
+                            Fortitude Valley - 416
+                          </option>
+                          <option value="Hobart">Hobart - 710</option>
+                          <option value="Melbourne">Melbourne - 314</option>
+                          <option value="Parramatta">Parramatta - 208</option>
+                          <option value="Perth">Perth - 615</option>
+                          <option value="Ringwood">Ringwood - 319</option>
+                          <option value="Sydney">Sydney - 210</option>
+                        </select>
                       </div>
                     </div>
                   </div>
