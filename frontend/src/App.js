@@ -1,7 +1,13 @@
+import React from "react";
 import ReactDOM from "react-dom";
+import Entry from "./components/Entry";
 
 function App() {
-  return <div className="text-3xl font-bold underline">App comp as</div>;
+  return (
+    <div>
+      <Entry />
+    </div>
+  );
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
