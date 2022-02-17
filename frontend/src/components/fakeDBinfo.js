@@ -1,7 +1,7 @@
 const fakeDBinfo = [
   {
     _id: "61c915ee2aa547cc7dc0ac2b",
-    orderNumber: 1,
+    orderNumber: 1000000001,
     pickupLocation: "Canberra",
     notes: "from react",
     orderedItems: [
@@ -10,23 +10,25 @@ const fakeDBinfo = [
         item: "whole",
       },
       {
-        sendingStore: "Canberra",
+        sendingStore: "Syd",
         item: "whole",
       },
     ],
     date: "2021-12-27T01:25:02.603Z",
     __v: 0,
     customerName: "Frank",
+    fourHour: "No",
   },
   {
     _id: "61cb86d06a9e816fb9713b09",
-    orderNumber: 2,
+    orderNumber: 1000000002,
     pickupLocation: "Canberra",
     notes: "test",
     orderedItems: [
       {
         sendingStore: "Parramatta",
         item: "whole",
+        status: "awaiting sending store action",
       },
     ],
     date: "2021-12-28T21:51:12.807Z",
@@ -35,22 +37,24 @@ const fakeDBinfo = [
   },
   {
     _id: "61cb86d06a9e816fb9713b09",
-    orderNumber: 3,
-    pickupLocation: "Canberra",
+    orderNumber: 1000000003,
+    pickupLocation: "Parramatta",
     notes: "test",
     orderedItems: [
       {
         sendingStore: "Parramatta",
         item: "everyting!",
+        status: "Posted out on DATE",
       },
       {
         sendingStore: "Canberra",
         item: "one other item",
+        status: "Out of stock",
       },
     ],
     date: "2021-12-28T21:51:12.807Z",
     __v: 0,
-    customerName: "Billy",
+    customerName: "Bob",
   },
 
   //   {

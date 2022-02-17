@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Todos from "./Todos";
 import fakeDBinfo from "./fakeDBinfo";
+import Incoming from "./Incoming";
 
 function UserSetter() {
   const [store, setStore] = useState("Parramatta");
@@ -8,13 +9,6 @@ function UserSetter() {
   function handleChange(e) {
     setStore(e.target.value);
   }
-
-  const testArray = [
-    { number: 1 },
-    { number: 3 },
-    { number: 4 },
-    { number: 5 },
-  ];
 
   return (
     <div>
@@ -48,9 +42,7 @@ function UserSetter() {
       <Todos currentStore={store} fakeDBinfo={fakeDBinfo} />
 
       <div>
-        {/* {testArray.map((x, i) => (
-          <div key={i}>{x.number}</div>
-        ))} */}
+        <Incoming currentStore={store} fakeDBinfo={fakeDBinfo} />
       </div>
     </div>
   );
