@@ -11,10 +11,13 @@ function Entry() {
         sendingStore: "Canberra",
         date: "",
         posted: false,
+        item: "",
       },
     ],
     fourHour: false,
   });
+
+  const [itemCounter, setItemCounter] = useState(1);
 
   function handleChange(e) {
     let name = e.target.id;
@@ -24,14 +27,23 @@ function Entry() {
     });
   }
 
-  function handleOrderedItemsChange(e) {
-    let name = e.target.id;
+  function handleSendingStoreChange(e) {
+    let index = e.target.id;
+    let prevArr = orderInfo.orderedItems;
+    prevArr[index].sendingStore = e.target.value;
     setOrderInfo({
       ...orderInfo,
-      orderedItems: {
-        ...orderInfo.orderedItems,
-        [name]: e.target.value,
-      },
+      orderedItems: prevArr,
+    });
+  }
+
+  function handleOrderedItemsChange(e) {
+    let index = e.target.id;
+    let prevArr = orderInfo.orderedItems;
+    prevArr[index].item = e.target.value;
+    setOrderInfo({
+      ...orderInfo,
+      orderedItems: prevArr,
     });
   }
 
@@ -45,8 +57,60 @@ function Entry() {
     });
   }
 
+  const itemRequester = [];
+  for (let i = 0; i < itemCounter; i++) {
+    itemRequester.push(
+      <>
+        <label htmlFor="items">Items needed: </label>
+        <textarea
+          id={i}
+          key={"item" + i}
+          onChange={(e) => {
+            handleOrderedItemsChange(e);
+          }}
+        />
+        <label htmlFor="sendingStore">Sending Store: </label>
+        <select
+          id={i}
+          key={"sendingStore" + i}
+          value={orderInfo.orderedItems[i].sendingStore}
+          onChange={(e) => {
+            handleSendingStoreChange(e);
+          }}
+        >
+          <option value="Canberra">Canberra - 213</option>
+          <option value="Fortitude Valley">Fortitude Valley - 416</option>
+          <option value="Hobart">Hobart - 710</option>
+          <option value="Melbourne">Melbourne - 314</option>
+          <option value="Parramatta">Parramatta - 208</option>
+          <option value="Perth">Perth - 615</option>
+          <option value="Ringwood">Ringwood - 319</option>
+          <option value="Sydney">Sydney - 210</option>
+        </select>
+        <br />
+      </>
+    );
+  }
+
+  function handleClick(e) {
+    e.preventDefault();
+    setItemCounter(itemCounter + 1);
+    let prevState = orderInfo.orderedItems;
+    const newRequest = {
+      sendingStore: "",
+      date: "",
+      posted: false,
+      item: "",
+    };
+    prevState.push(newRequest);
+    setOrderInfo({
+      ...orderInfo,
+      orderedItems: prevState,
+    });
+  }
+
   return (
-    <div>
+    <div key="CNC-App">
       <div>
         <h3>Paddy CNC app</h3>
         <p>Requests to stores can be inputed here </p>
@@ -98,39 +162,11 @@ function Entry() {
           onChange={(e) => handleChange(e)}
         ></input>
         <div>
-          Make multiple requests: <button> Get more requests</button>
+          Make multiple requests:{" "}
+          <button onClick={(e) => handleClick(e)}> Get more requests</button>
         </div>
-
-        <label htmlFor="items">Items needed: </label>
-        <textarea
-          id="item"
-          onChange={(e) => {
-            handleOrderedItemsChange(e);
-          }}
-        />
-        <label htmlFor="sendingStore">Sending Store: </label>
-        <select
-          id="sendingStore"
-          value={orderInfo.sendingStore}
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        >
-          <option value="Canberra">Canberra - 213</option>
-          <option value="Fortitude Valley">Fortitude Valley - 416</option>
-          <option value="Hobart">Hobart - 710</option>
-          <option value="Melbourne">Melbourne - 314</option>
-          <option value="Parramatta">Parramatta - 208</option>
-          <option value="Perth">Perth - 615</option>
-          <option value="Ringwood">Ringwood - 319</option>
-          <option value="Sydney">Sydney - 210</option>
-        </select>
-        <button
-          type="submit"
-          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          Save
-        </button>
+        {itemRequester}
+        <button type="submit">Save</button>
       </form>
     </div>
   );

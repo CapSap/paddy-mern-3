@@ -52,8 +52,8 @@ function Todos(props) {
                         <select>
                           <option>Not Touched</option>
                           <option>Store staff working on it</option>
-                          <option>Posted Out</option>
-                          <option>IBT Done</option>
+                          <option>Out of Stock</option>
+                          <option>Posted/IBT done</option>
                         </select>
                         <button> Update Order</button>
                       </td>
