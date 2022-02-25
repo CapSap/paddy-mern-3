@@ -27,27 +27,19 @@ function Entry() {
     });
   }
 
-  function handleSendingStoreChange(e) {
-    let index = e.target.id;
-    let prevArr = orderInfo.orderedItems;
-    prevArr[index].sendingStore = e.target.value;
-    setOrderInfo({
-      ...orderInfo,
-      orderedItems: prevArr,
-    });
-  }
-
   function handleOrderedItemsChange(e) {
     let index = e.target.id;
     let prevArr = orderInfo.orderedItems;
-    prevArr[index].item = e.target.value;
+    let stateName = e.target.previousElementSibling.htmlFor;
+
+    prevArr[index][stateName] = e.target.value;
     setOrderInfo({
       ...orderInfo,
       orderedItems: prevArr,
     });
   }
 
-  function onSubmit(e) {
+  function onFormSubmit(e) {
     e.preventDefault();
     console.log(JSON.stringify(orderInfo));
     fetch("/api/orders", {
@@ -61,7 +53,7 @@ function Entry() {
   for (let i = 0; i < itemCounter; i++) {
     itemRequester.push(
       <>
-        <label htmlFor="items">Items needed: </label>
+        <label htmlFor="item">Items needed: </label>
         <textarea
           id={i}
           key={"item" + i}
@@ -75,7 +67,7 @@ function Entry() {
           key={"sendingStore" + i}
           value={orderInfo.orderedItems[i].sendingStore}
           onChange={(e) => {
-            handleSendingStoreChange(e);
+            handleOrderedItemsChange(e);
           }}
         >
           <option value="Canberra">Canberra - 213</option>
@@ -115,7 +107,7 @@ function Entry() {
         <h3>Paddy CNC app</h3>
         <p>Requests to stores can be inputed here </p>
       </div>
-      <form method="POST" action="/" onSubmit={(e) => onSubmit(e)}>
+      <form method="POST" action="/" onSubmit={(e) => onFormSubmit(e)}>
         <label htmlFor="orderNumber">Order Number </label>
         <input
           type="text"
