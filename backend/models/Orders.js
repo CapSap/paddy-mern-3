@@ -13,7 +13,6 @@ const OrderSchema = new Schema({
   },
   orderStatus: {
     type: String,
-    required: true,
   },
   date: {
     type: Date,
@@ -21,7 +20,6 @@ const OrderSchema = new Schema({
   },
   pickupLocation: {
     type: String,
-    required: true,
   },
   notes: {
     type: String,
