@@ -23,7 +23,7 @@ function Incoming(props) {
         </thead>
         <tbody>
           {fakeDBinfo.map((x, i) => (
-            <>
+            <div className="incoming" key={i}>
               {x.pickupLocation == props.currentStore ? (
                 <>
                   <tr key={i}>
@@ -41,7 +41,7 @@ function Incoming(props) {
                   ))}
                 </>
               ) : null}
-            </>
+            </div>
           ))}
         </tbody>
       </table>

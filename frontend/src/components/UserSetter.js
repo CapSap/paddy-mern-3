@@ -11,7 +11,7 @@ function UserSetter() {
   }
 
   return (
-    <div>
+    <div className="UserSetter">
       <label htmlFor="storeChooser">Set store location here: </label>
       <select
         id="storeChooser"
