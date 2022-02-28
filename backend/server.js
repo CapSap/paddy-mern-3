@@ -2,8 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const { errorHandler } = require("./middleware/errorMiddleware");
 
-const orders = require("./routes/api/orders");
+const port = process.env.PORT || 5000;
 
 const app = express();
 
@@ -26,9 +27,8 @@ mongoose
   });
 
 //use routes
-app.use("/api/orders", orders);
-
-const port = process.env.PORT || 5000;
+app.use("/api/orders", require("./routes/api/orders"));
+app.use(errorHandler);
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(port, () => console.log(`server started on port ${port}`));
