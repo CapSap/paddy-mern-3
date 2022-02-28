@@ -15,6 +15,7 @@ function Entry() {
       },
     ],
     fourHour: false,
+    notes: "",
   });
 
   const [itemCounter, setItemCounter] = useState(1);
@@ -26,11 +27,11 @@ function Entry() {
       [name]: e.target.value,
     });
   }
-
+  // this function handles changing the item request in state. cause its an array a few things are different
   function handleOrderedItemsChange(e) {
     let index = e.target.id;
-    let prevArr = orderInfo.orderedItems;
     let stateName = e.target.previousElementSibling.htmlFor;
+    let prevArr = orderInfo.orderedItems;
 
     prevArr[index][stateName] = e.target.value;
     setOrderInfo({
