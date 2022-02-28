@@ -6,3 +6,11 @@
 body {
   font-family: "Poppins", sans-serif;
 }
+
+.UserSetter {
+  padding-top: 3em;
+}
+
+.incoming {
+  border: solid;
+}
