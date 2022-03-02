@@ -26,6 +26,12 @@ mongoose
     console.log(error);
   });
 
+app.use(express.static("../frontend/dist"));
+
+app.get("/", function (req, res) {
+  res.sendFile("../frontend/dist", "index.html");
+});
+
 //use routes
 app.use("/api/orders", require("./routes/api/orders"));
 app.use(errorHandler);

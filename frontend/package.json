@@ -8,11 +8,13 @@
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
     "parcel": "parcel public/index.html",
+    "build": "parcel build public/index.html",
     "dev": "concurrently \"npm run parcel\" \"cd ../backend && npm run server\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@swc/helpers": "^0.3.6",
     "parcel": "^2.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
