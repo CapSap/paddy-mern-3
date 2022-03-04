@@ -1,17 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Todos from "./Todos";
 import fakeDBinfo from "./fakeDBinfo";
 import Incoming from "./Incoming";
 
-function UserSetter() {
+function StoreChooser() {
   const [store, setStore] = useState("Parramatta");
+
+  const [ordersFromDB, setOrdersFromDB] = useState("not loaded");
+
+  useEffect(() => {
+    fetch("/api/orders", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((data) => setOrdersFromDB(data));
+  }, []);
 
   function handleChange(e) {
     setStore(e.target.value);
   }
 
   return (
-    <div className="UserSetter">
+    <div className="StoreChooser">
       <label htmlFor="storeChooser">Set store location here: </label>
       <select
         id="storeChooser"
@@ -29,11 +40,19 @@ function UserSetter() {
         <option value="Ringwood">Ringwood - 319</option>
         <option value="Sydney">Sydney - 210</option>
       </select>
-      <Todos currentStore={store} fakeDBinfo={fakeDBinfo} />
+      <Todos
+        currentStore={store}
+        fakeDBinfo={fakeDBinfo}
+        ordersFromDB={ordersFromDB}
+      />
 
-      <Incoming currentStore={store} fakeDBinfo={fakeDBinfo} />
+      {/* <Incoming
+        currentStore={store}
+        fakeDBinfo={fakeDBinfo}
+        ordersFromDB={ordersFromDB}
+      /> */}
     </div>
   );
 }
 
-export default UserSetter;
+export default StoreChooser;

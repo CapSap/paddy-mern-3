@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UserSetter from "./UserSetter";
+import StoreChooser from "./StoreChooser";
 import fakeDBinfo from "./fakeDBinfo";
 
 function Incoming(props) {
