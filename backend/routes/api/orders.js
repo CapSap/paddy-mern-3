@@ -39,8 +39,6 @@ router.post("/", async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
   const order = await Order.findById(req.params.id);
 
-  console.log(req.body);
-
   if (!order) {
     res.status(400);
     try {
