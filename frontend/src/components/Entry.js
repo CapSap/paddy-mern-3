@@ -118,7 +118,6 @@ function Entry() {
           onChange={(e) => handleChange(e)}
           autoComplete="given-name"
         />
-
         <label htmlFor="customerName">Customer Name</label>
         <input
           type="text"
@@ -128,7 +127,6 @@ function Entry() {
           onChange={(e) => handleChange(e)}
           autoComplete="family-name"
         />
-
         <label htmlFor="pickupLocation">Pickup Location: </label>
         <select
           id="pickupLocation"
@@ -145,7 +143,7 @@ function Entry() {
           <option value="Perth">Perth - 615</option>
           <option value="Ringwood">Ringwood - 319</option>
           <option value="Sydney">Sydney - 210</option>
-        </select>
+        </select>{" "}
         <label htmlFor="fourHour">4 Hour? </label>
         <input
           id="fourHour"
@@ -159,7 +157,7 @@ function Entry() {
           <button onClick={(e) => handleClick(e)}> Get more requests</button>
         </div>
         {itemRequester}
-        <button type="submit">Save</button>
+        <button type="submit">Send order/request to store</button>
       </form>
     </div>
   );
