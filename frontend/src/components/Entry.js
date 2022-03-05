@@ -90,7 +90,7 @@ function Entry() {
     setItemCounter(itemCounter + 1);
     let prevState = orderInfo.orderedItems;
     const newRequest = {
-      sendingStore: "",
+      sendingStore: "Canberra",
       date: "",
       posted: false,
       item: "",
